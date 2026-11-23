@@ -1,0 +1,147 @@
+/* pages/shop/cart/cart.wxss 购物车 */
+.page-cart {
+  min-height: 100vh;
+}
+
+.empty-btn {
+  width: 240rpx;
+  margin: 32rpx auto 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.cart-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+  background: #F0F2F5;
+}
+
+.cart-img.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70rpx;
+}
+
+.cart-info {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.cart-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cart-spec {
+  font-size: 24rpx;
+  color: var(--text-light);
+  margin-top: 6rpx;
+}
+
+.cart-price-row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 8rpx;
+}
+
+.cart-unit {
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin-left: 4rpx;
+}
+
+.cart-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+}
+
+.step-btn {
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 52rpx;
+  text-align: center;
+  border: 2rpx solid var(--border);
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  color: var(--text);
+}
+
+.step-input {
+  width: 80rpx;
+  height: 56rpx;
+  text-align: center;
+  border-top: 2rpx solid var(--border);
+  border-bottom: 2rpx solid var(--border);
+  font-size: 28rpx;
+  margin: 0 -2rpx;
+}
+
+.cart-subtotal {
+  font-size: 26rpx;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.cart-del {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: var(--text-light);
+}
+
+/* 底部结算栏 */
+.checkout-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+
+.checkout-total {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.checkout-total .price {
+  font-size: 36rpx;
+  margin-left: 8rpx;
+}
+
+.checkout-btn {
+  width: 240rpx;
+}

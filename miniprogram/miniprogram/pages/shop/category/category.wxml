@@ -1,0 +1,40 @@
+<!-- pages/shop/category/category.wxml 分类页 -->
+<view class="page-category">
+  <!-- 分类 tab -->
+  <view class="cat-tabs">
+    <view class="cat-tab {{activeKey === item.key ? 'active' : ''}}"
+          wx:for="{{tabs}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="onTabTap">
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="container">
+    <view wx:if="{{!loading && products.length === 0}}" class="empty">
+      <text class="empty-icon">🍇</text>
+      暂无商品
+    </view>
+
+    <view class="product-grid">
+      <view class="product-card" wx:for="{{products}}" wx:key="_id" data-id="{{item._id}}" bindtap="goDetail">
+        <view class="product-image-wrap">
+          <image wx:if="{{item.image}}" class="product-image" src="{{item.image}}" mode="aspectFill" />
+          <view wx:else class="product-image placeholder">{{item.category === '葡萄酒' ? '🍷' : '🍇'}}</view>
+          <view wx:if="{{item.stock <= 0}}" class="sold-out">已售罄</view>
+        </view>
+        <view class="product-info">
+          <view class="product-name">{{item.name}}</view>
+          <view class="product-tags">
+            <text class="tag {{item.category === '葡萄酒' ? 'tag-wine' : 'tag-grape'}}">{{item.category}}</text>
+            <text wx:if="{{item.spec}}" class="product-spec">{{item.spec}}</text>
+          </view>
+          <view class="product-price-row">
+            <text class="price">￥{{item.priceText}}</text>
+            <text class="product-unit">/{{item.unit}}</text>
+          </view>
+          <view wx:if="{{item.stock > 0}}" class="product-stock">库存 {{item.stock}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

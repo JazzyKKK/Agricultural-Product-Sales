@@ -1,0 +1,84 @@
+/* pages/shop/profile/profile.wxss 我的 */
+.page-profile {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 用户卡 */
+.user-card {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  padding: 56rpx 40rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.user-avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  margin-right: 28rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.user-id {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+/* 菜单 */
+.menu-card {
+  padding: 0 28rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  width: 56rpx;
+  text-align: center;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  margin-left: 16rpx;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: var(--text-light);
+}
+
+.boss-item .menu-text {
+  color: var(--wine);
+  font-weight: 600;
+}
+
+/* 底部说明 */
+.footer-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-light);
+  padding: 40rpx 0;
+}

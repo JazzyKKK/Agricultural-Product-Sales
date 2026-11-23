@@ -1,0 +1,42 @@
+<!-- pages/shop/cart/cart.wxml 购物车 -->
+<view class="page-cart">
+  <view wx:if="{{items.length === 0}}" class="empty">
+    <text class="empty-icon">🛒</text>
+    购物车空空如也
+    <view class="btn btn-outline empty-btn" bindtap="goHome">去逛逛</view>
+  </view>
+
+  <view wx:else>
+    <view class="container">
+      <view class="cart-item" wx:for="{{items}}" wx:key="productId">
+        <image wx:if="{{item.image}}" class="cart-img" src="{{item.image}}" mode="aspectFill" />
+        <view wx:else class="cart-img placeholder">🍇</view>
+        <view class="cart-info">
+          <view class="cart-name">{{item.name}}</view>
+          <view wx:if="{{item.spec}}" class="cart-spec">{{item.spec}}</view>
+          <view class="cart-price-row">
+            <text class="price">￥{{item.priceText}}</text>
+            <text class="cart-unit">/{{item.unit}}</text>
+          </view>
+          <view class="cart-bottom">
+            <view class="stepper">
+              <view class="step-btn" bindtap="onMinus" data-index="{{index}}">-</view>
+              <input class="step-input" type="number" value="{{item.qty}}" bindinput="onQtyInput" data-index="{{index}}" />
+              <view class="step-btn" bindtap="onPlus" data-index="{{index}}">+</view>
+            </view>
+            <text class="cart-subtotal">小计 ￥{{item.subtotalText}}</text>
+          </view>
+        </view>
+        <view class="cart-del" bindtap="onDelete" data-index="{{index}}">×</view>
+      </view>
+    </view>
+
+    <!-- 底部结算栏 -->
+    <view class="checkout-bar">
+      <view class="checkout-total">
+        合计 <text class="price">￥{{totalText}}</text>
+      </view>
+      <view class="btn btn-primary checkout-btn" bindtap="onCheckout">去结算</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,57 @@
+<!-- pages/customerDetail/customerDetail.wxml -->
+<view class="page-customer-detail">
+  <!-- 顶部客户信息卡 -->
+  <view class="info-hero" wx:if="{{customer}}">
+    <view class="info-name">{{customer.name}}</view>
+    <view class="info-phone" bindtap="callCustomer">
+      <text class="phone-icon">📞</text>
+      <text>{{customer.phone || '未填写手机号'}}</text>
+    </view>
+    <view class="info-stats">
+      <view class="info-cell">
+        <view class="info-num">￥{{amountText}}</view>
+        <view class="info-label">累计消费</view>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-cell">
+        <view class="info-num">{{customer.totalOrders || 0}}</view>
+        <view class="info-label">订单数</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="container">
+    <!-- 备注 -->
+    <view class="card" wx:if="{{customer && customer.remark}}">
+      <view class="card-title">备注</view>
+      <view class="remark-text">{{customer.remark}}</view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-row" wx:if="{{customer}}">
+      <button class="btn btn-outline action-btn" bindtap="goEdit">编辑</button>
+      <button class="btn btn-outline action-btn" bindtap="callCustomer" disabled="{{!customer.phone}}">拨打电话</button>
+    </view>
+
+    <!-- 消费记录 -->
+    <view class="card">
+      <view class="card-title">
+        消费记录
+        <text class="more" wx:if="{{sales.length}}">{{sales.length}}单</text>
+      </view>
+      <block wx:if="{{sales.length}}">
+        <view class="sale-item" wx:for="{{sales}}" wx:key="_id" bindtap="goSaleDetail" data-id="{{item._id}}">
+          <view class="sale-left">
+            <view class="sale-no">单号 {{item.orderNo}}</view>
+            <view class="sale-meta">{{item.timeText}} · {{item.qtyText}}件商品 · {{item.payLabel}}</view>
+          </view>
+          <view class="sale-amount">￥{{item.amountText}}</view>
+        </view>
+      </block>
+      <view wx:else class="empty">
+        <text class="empty-icon">🛒</text>
+        {{loading ? '加载中...' : '暂无消费记录'}}
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<!-- pages/index/index.wxml -->
+<view class="page-index">
+  <!-- 顶部概览卡片 -->
+  <view class="hero">
+    <view class="hero-title">阳光玫瑰销售记账</view>
+    <view class="hero-row">
+      <view class="hero-cell">
+        <view class="hero-num">￥{{todayAmount}}</view>
+        <view class="hero-label">今日销售额</view>
+      </view>
+      <view class="hero-divider"></view>
+      <view class="hero-cell">
+        <view class="hero-num">{{todayOrders}}</view>
+        <view class="hero-label">今日订单</view>
+      </view>
+    </view>
+    <view class="hero-month">
+      本月销售 ￥{{monthAmount}} · {{monthOrders}} 单
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="container">
+    <view class="card quick-grid">
+      <view class="quick-item" bindtap="goNewSale">
+        <view class="quick-icon icon-sale">＋</view>
+        <text>新建销售</text>
+      </view>
+      <view class="quick-item" bindtap="goSaleList">
+        <view class="quick-icon icon-list">≡</view>
+        <text>销售流水</text>
+      </view>
+      <view class="quick-item" bindtap="goCustomer">
+        <view class="quick-icon icon-customer">☺</view>
+        <text>客户管理</text>
+      </view>
+      <view class="quick-item" bindtap="goProduct">
+        <view class="quick-icon icon-product">▦</view>
+        <text>商品目录</text>
+      </view>
+      <view class="quick-item" bindtap="goShopOrder">
+        <view class="quick-icon icon-order">✉</view>
+        <text>顾客订单</text>
+        <view wx:if="{{pendingOrders > 0}}" class="badge">{{pendingOrders}}</view>
+      </view>
+      <view class="quick-item" bindtap="goStats">
+        <view class="quick-icon icon-stats">▣</view>
+        <text>数据统计</text>
+      </view>
+    </view>
+
+    <!-- 最近销售 -->
+    <view class="card">
+      <view class="card-title">
+        最近销售
+        <text class="more" bindtap="goSaleList">查看全部 ›</text>
+      </view>
+      <block wx:if="{{recentSales.length}}">
+        <view class="sale-item" wx:for="{{recentSales}}" wx:key="_id" bindtap="goSaleList">
+          <view class="sale-left">
+            <view class="sale-name">{{item.customerName || '散客'}}</view>
+            <view class="sale-meta">{{item.timeText}} · {{item.items.length}}件商品</view>
+          </view>
+          <view class="sale-amount">￥{{item.amountText}}</view>
+        </view>
+      </block>
+      <view wx:else class="empty">
+        <text class="empty-icon">🍇</text>
+        暂无销售记录，点击右下角开始记账
+      </view>
+    </view>
+  </view>
+
+  <!-- 悬浮新建按钮 -->
+  <view class="fab" bindtap="goNewSale">＋</view>
+
+  <!-- 老板端底部导航 -->
+  <boss-tab-bar selected="{{0}}"></boss-tab-bar>
+</view>

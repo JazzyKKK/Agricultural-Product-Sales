@@ -1,0 +1,21 @@
+<!-- pages/customerEdit/customerEdit.wxml -->
+<view class="page-customer-edit container">
+  <view class="card">
+    <view class="form-group">
+      <text class="form-label">姓名</text>
+      <input class="form-input" placeholder="请输入客户姓名" value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+    <view class="form-group form-group-textarea">
+      <text class="form-label">备注</text>
+      <textarea class="form-input" placeholder="备注信息（选填）" value="{{remark}}" bindinput="onRemarkInput" auto-height maxlength="200" />
+    </view>
+  </view>
+
+  <button class="btn btn-primary btn-block" bindtap="save" loading="{{submitting}}" disabled="{{submitting}}">保存</button>
+
+  <button wx:if="{{isEdit}}" class="btn btn-outline btn-block del-btn" bindtap="removeCustomer">删除客户</button>
+</view>

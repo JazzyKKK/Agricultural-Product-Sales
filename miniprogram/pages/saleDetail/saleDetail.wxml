@@ -1,0 +1,46 @@
+<!-- pages/saleDetail/saleDetail.wxml -->
+<view class="page-sale-detail" wx:if="{{sale}}">
+  <!-- 金额卡 -->
+  <view class="amount-card">
+    <view class="amount-num">￥{{amountText}}</view>
+    <view class="amount-meta">
+      <text class="orderno">{{sale.orderNo}}</text>
+      <text class="tag tag-grape">{{payLabel}}</text>
+    </view>
+    <view class="amount-time">{{timeText}}</view>
+    <view class="amount-cust" bindtap="goCustomer">
+      <text class="cust-label">客户</text>
+      <text class="cust-name">{{sale.customerName || '散客'}}</text>
+      <text class="cust-arrow" wx:if="{{sale.customerId}}">›</text>
+    </view>
+  </view>
+
+  <view class="container">
+    <!-- 商品明细 -->
+    <view class="card">
+      <view class="card-title">商品明细</view>
+      <view class="goods-item" wx:for="{{sale.items}}" wx:key="index">
+        <view class="goods-head">
+          <view class="goods-name">
+            {{item.name}}
+          </view>
+          <text class="goods-sub">￥{{item.amountText}}</text>
+        </view>
+        <view class="goods-spec" wx:if="{{item.spec}}">规格：{{item.spec}}</view>
+        <view class="goods-row">
+          <text class="goods-price">单价 ￥{{item.priceText}}</text>
+          <text class="goods-qty">×{{item.qty}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="card" wx:if="{{sale.remark}}">
+      <view class="card-title">备注</view>
+      <view class="remark-text">{{sale.remark}}</view>
+    </view>
+
+    <!-- 删除 -->
+    <button class="btn btn-outline btn-block danger-btn" bindtap="onDelete">删除此单</button>
+  </view>
+</view>

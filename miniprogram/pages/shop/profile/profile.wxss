@@ -1,0 +1,180 @@
+/* pages/shop/profile/profile.wxss 我的 */
+.page-profile {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 用户卡 */
+.user-card {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  padding: 56rpx 40rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.user-avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  margin-right: 28rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.user-id {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+/* 菜单 */
+.menu-card {
+  padding: 0 28rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  width: 56rpx;
+  text-align: center;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  margin-left: 16rpx;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: var(--text-light);
+}
+
+.boss-item .menu-text {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+/* 分享卡片 */
+.share-card {
+  text-align: center;
+  padding: 36rpx 28rpx;
+}
+
+.share-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.share-sub {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin: 12rpx 0 28rpx;
+}
+
+.share-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.share-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 44rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.share-btn-icon {
+  margin-right: 8rpx;
+  font-size: 32rpx;
+}
+
+/* 二维码弹窗 */
+.qrcode-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcode-box {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx 28rpx 28rpx;
+  text-align: center;
+}
+
+.qrcode-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20rpx;
+}
+
+.qrcode-img {
+  width: 460rpx;
+  height: 460rpx;
+  margin: 0 auto;
+}
+
+.qrcode-tip {
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin: 20rpx 0 24rpx;
+}
+
+.qrcode-close {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border-top: 2rpx solid var(--border);
+}
+
+/* 底部说明 */
+.footer-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-light);
+  padding: 40rpx 0;
+}

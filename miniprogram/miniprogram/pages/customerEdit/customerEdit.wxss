@@ -1,0 +1,29 @@
+/* pages/customerEdit/customerEdit.wxss */
+.page-customer-edit {
+  min-height: 100vh;
+  padding-bottom: 60rpx;
+}
+
+/* 备注 textarea 顶部对齐 */
+.form-group-textarea {
+  align-items: flex-start;
+}
+
+.form-group-textarea .form-label {
+  padding-top: 8rpx;
+}
+
+.form-group-textarea textarea {
+  min-height: 120rpx;
+}
+
+/* 保存按钮下方间距 */
+.btn-block + .btn-block {
+  margin-top: 32rpx;
+}
+
+/* 删除按钮红色描边 */
+.del-btn {
+  color: var(--danger);
+  border-color: var(--danger);
+}

@@ -1,0 +1,36 @@
+/* components/boss-tab-bar/boss-tab-bar.wxss */
+.boss-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100rpx;
+  display: flex;
+  background: #ffffff;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.06);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 999;
+}
+
+.boss-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+}
+
+.boss-icon {
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.boss-text {
+  font-size: 20rpx;
+  margin-top: 6rpx;
+}
+
+.boss-item.active {
+  color: #7BC47F;
+}

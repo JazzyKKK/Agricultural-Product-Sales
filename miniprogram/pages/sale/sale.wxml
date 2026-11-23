@@ -1,0 +1,135 @@
+<!-- pages/sale/sale.wxml -->
+<view class="page-sale">
+  <view class="container">
+    <!-- 客户 -->
+    <view class="card">
+      <view class="card-title">客户</view>
+      <view class="cust-row" bindtap="openCustomerPicker" wx:if="{{!customer && !isWalkIn}}">
+        <text class="cust-placeholder">选择客户</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="cust-selected" wx:else>
+        <view class="cust-info">
+          <text class="cust-name">{{isWalkIn ? '散客' : customer.name}}</text>
+          <text class="cust-phone" wx:if="{{customer.phone}}">{{customer.phone}}</text>
+        </view>
+        <text class="cust-clear" bindtap="clearCustomer">更换</text>
+      </view>
+      <view class="walkin-tip" wx:if="{{!customer && !isWalkIn}}">
+        <text bindtap="setWalkIn" class="walkin-btn">记为散客</text>
+      </view>
+    </view>
+
+    <!-- 商品明细 -->
+    <view class="card">
+      <view class="card-title">
+        销售明细
+        <text class="more" bindtap="openProductPicker">＋ 添加商品</text>
+      </view>
+      <block wx:if="{{items.length}}">
+        <view class="item" wx:for="{{items}}" wx:key="index">
+          <view class="item-head">
+            <view class="item-name">
+              {{item.name}}
+            </view>
+            <text class="item-del" data-idx="{{index}}" bindtap="removeItem">删除</text>
+          </view>
+          <view class="item-spec" wx:if="{{item.spec}}">规格：{{item.spec}}</view>
+          <view class="item-row">
+            <view class="field">
+              <text class="field-label">单价</text>
+              <input class="field-input" type="digit" value="{{item.priceText}}" data-idx="{{index}}" bindinput="onPriceInput" />
+              <text class="field-unit">元/{{item.unit}}</text>
+            </view>
+            <view class="field">
+              <text class="field-label">数量</text>
+              <view class="stepper">
+                <text class="step-btn" data-idx="{{index}}" data-delta="{{-1}}" bindtap="changeQty">−</text>
+                <input class="step-input" type="digit" value="{{item.qty}}" data-idx="{{index}}" bindinput="onQtyInput" />
+                <text class="step-btn" data-idx="{{index}}" data-delta="{{1}}" bindtap="changeQty">＋</text>
+              </view>
+              <text class="field-unit">{{item.unit}}</text>
+            </view>
+          </view>
+          <view class="item-sub">小计 ￥{{item.price * item.qty / 100}}</view>
+        </view>
+      </block>
+      <view wx:else class="empty">
+        <text class="empty-icon">🛒</text>
+        点击右上角添加商品
+      </view>
+    </view>
+
+    <!-- 支付方式 -->
+    <view class="card">
+      <view class="card-title">支付方式</view>
+      <view class="pay-grid">
+        <view class="pay-item {{payMethod === item.key ? 'active' : ''}}" wx:for="{{payMethods}}" wx:key="key" data-key="{{item.key}}" bindtap="pickPay">
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="card">
+      <view class="card-title">备注</view>
+      <textarea class="remark-input" placeholder="选填，记录本次销售备注" value="{{remark}}" bindinput="onRemarkInput" maxlength="200" auto-height></textarea>
+    </view>
+  </view>
+
+  <!-- 底部提交栏 -->
+  <view class="submit-bar">
+    <view class="submit-total">
+      <text class="submit-label">合计 {{totalQty}} 件</text>
+      <text class="submit-amount">￥{{totalAmountText}}</text>
+    </view>
+    <button class="btn btn-primary submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">确认记账</button>
+  </view>
+
+  <!-- 客户选择弹窗 -->
+  <view class="mask" wx:if="{{showCustomerPicker}}" bindtap="closeCustomerPicker"></view>
+  <view class="sheet {{showCustomerPicker ? 'sheet-show' : ''}}" catchtap="">
+    <view class="sheet-head">
+      <text class="sheet-title">选择客户</text>
+      <text class="sheet-close" bindtap="closeCustomerPicker">✕</text>
+    </view>
+    <view class="sheet-search">
+      <input class="search-input" placeholder="搜索姓名 / 手机号" value="{{customerKeyword}}" bindinput="onCustomerKeywordInput" confirm-type="search" />
+      <text class="sheet-add" bindtap="goAddCustomer">+ 新建</text>
+    </view>
+    <scroll-view scroll-y class="sheet-body">
+      <view class="sheet-item" bindtap="setWalkIn">
+        <text class="sheet-item-name">散客</text>
+      </view>
+      <view class="sheet-item" wx:for="{{customerList}}" wx:key="_id" data-c="{{item}}" bindtap="pickCustomer">
+        <view class="sheet-item-left">
+          <text class="sheet-item-name">{{item.name}}</text>
+          <text class="sheet-item-phone" wx:if="{{item.phone}}">{{item.phone}}</text>
+        </view>
+        <text class="sheet-item-stat">已购 {{item.totalOrders}} 次</text>
+      </view>
+      <view class="empty" wx:if="{{!customerList.length}}">暂无客户，点击右上角新建</view>
+    </scroll-view>
+  </view>
+
+  <!-- 商品选择弹窗 -->
+  <view class="mask" wx:if="{{showProductPicker}}" bindtap="closeProductPicker"></view>
+  <view class="sheet {{showProductPicker ? 'sheet-show' : ''}}" catchtap="">
+    <view class="sheet-head">
+      <text class="sheet-title">添加商品</text>
+      <text class="sheet-close" bindtap="closeProductPicker">✕</text>
+    </view>
+    <scroll-view scroll-y class="sheet-body">
+      <view class="prod-item" wx:for="{{productList}}" wx:key="_id" data-p="{{item}}" bindtap="pickProduct">
+        <view class="prod-left">
+          <text class="prod-name">{{item.name}}</text>
+          <text class="prod-spec" wx:if="{{item.spec}}">{{item.spec}} · {{item.unit}}</text>
+        </view>
+        <text class="prod-price">￥{{item.priceText}}/{{item.unit}}</text>
+      </view>
+      <view class="empty" wx:if="{{!productList.length}}">
+        暂无商品，请先在「商品目录」中添加
+      </view>
+    </scroll-view>
+  </view>
+</view>

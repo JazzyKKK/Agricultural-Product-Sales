@@ -1,0 +1,102 @@
+/* pages/customer/customer.wxss */
+.page-customer {
+  min-height: 100vh;
+  padding-bottom: 140rpx; /* 容纳 boss-tab-bar */
+}
+
+/* 顶部搜索栏 */
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background: #fff;
+  border-radius: 0 0 24rpx 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border-radius: 40rpx;
+  padding: 0 24rpx;
+  height: 72rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  opacity: 0.6;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.add-btn {
+  width: 72rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 44rpx;
+  margin-left: 20rpx;
+}
+
+/* 客户卡片 */
+.customer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cust-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cust-name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.cust-phone {
+  font-size: 26rpx;
+  color: var(--text-light);
+  margin-top: 8rpx;
+}
+
+.cust-stats {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-top: 12rpx;
+}
+
+.cust-divider {
+  margin: 0 12rpx;
+  color: var(--text-light);
+}
+
+.cust-call {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cust-call.disabled {
+  background: var(--border);
+  opacity: 0.6;
+}
+
+.call-icon {
+  font-size: 36rpx;
+}

@@ -1,0 +1,53 @@
+<!-- pages/shop/profile/profile.wxml 我的 -->
+<view class="page-profile">
+  <!-- 用户卡 -->
+  <view class="user-card">
+    <view class="user-avatar">☺</view>
+    <view class="user-info">
+      <view class="user-name">您好，顾客</view>
+      <view class="user-id" bindlongpress="onLongPressId">ID：{{openidMasked}}</view>
+    </view>
+  </view>
+
+  <view class="container">
+    <!-- 功能入口 -->
+    <view class="card menu-card">
+      <view class="menu-item" bindtap="goOrders">
+        <text class="menu-icon">📜</text>
+        <text class="menu-text">我的订单</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="goCart">
+        <text class="menu-icon">🛒</text>
+        <text class="menu-text">购物车</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="onContact">
+        <text class="menu-icon">📞</text>
+        <text class="menu-text">联系商家</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="onAbout">
+        <text class="menu-icon">ℹ</text>
+        <text class="menu-text">关于我们</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 老板入口 -->
+    <view wx:if="{{isBoss}}" class="card">
+      <view class="menu-item boss-item" bindtap="goBoss">
+        <text class="menu-icon">👔</text>
+        <text class="menu-text">进入记账后台</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="logoutBoss">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出老板身份</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-tip">数据由微信云开发提供</view>
+</view>

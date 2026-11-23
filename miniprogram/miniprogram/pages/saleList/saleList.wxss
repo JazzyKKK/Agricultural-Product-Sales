@@ -1,0 +1,147 @@
+/* pages/saleList/saleList.wxss */
+.page-sale-list {
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部筛选 */
+.filter-bar {
+  background: #fff;
+  padding: 20rpx 24rpx 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.range-tabs {
+  display: flex;
+  gap: 16rpx;
+}
+
+.range-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  border-radius: 24rpx;
+  background: var(--bg);
+}
+
+.range-tab.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.search-box {
+  padding: 20rpx 0;
+}
+
+.search-input {
+  background: var(--bg);
+  border-radius: 32rpx;
+  padding: 16rpx 28rpx;
+  font-size: 28rpx;
+}
+
+/* 汇总卡 */
+.summary-card {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.summary-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.summary-num {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.summary-label {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.summary-divider {
+  width: 2rpx;
+  height: 64rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 列表 */
+.list-card {
+  padding: 0 28rpx;
+}
+
+.sale-row {
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.sale-row:last-child {
+  border-bottom: none;
+}
+
+.sale-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sale-customer {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.sale-amount {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.sale-row-mid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+
+.sale-orderno {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.sale-row-bot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+
+.sale-time {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.sale-qty {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.load-tip {
+  text-align: center;
+  padding: 24rpx;
+  font-size: 24rpx;
+  color: var(--text-light);
+}

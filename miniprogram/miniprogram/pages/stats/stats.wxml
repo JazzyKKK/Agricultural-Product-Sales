@@ -1,0 +1,96 @@
+<!-- pages/stats/stats.wxml -->
+<view class="page-stats">
+  <!-- 时间筛选 -->
+  <view class="range-tabs">
+    <view class="range-tab {{rangeKey === item.key ? 'active' : ''}}" wx:for="{{rangeTabs}}" wx:key="key" data-key="{{item.key}}" bindtap="switchRange">{{item.label}}</view>
+  </view>
+
+  <view class="container">
+    <!-- 概览卡 -->
+    <view class="card overview-card">
+      <view class="overview-row">
+        <view class="overview-cell">
+          <view class="overview-num">￥{{totalAmountText}}</view>
+          <view class="overview-label">区间销售额</view>
+        </view>
+        <view class="overview-cell">
+          <view class="overview-num">{{totalOrders}}</view>
+          <view class="overview-label">订单数</view>
+        </view>
+        <view class="overview-cell">
+          <view class="overview-num">￥{{avgAmountText}}</view>
+          <view class="overview-label">客单价</view>
+        </view>
+      </view>
+    </view>
+
+    <block wx:if="{{totalOrders > 0}}">
+      <!-- 近7天柱状图 -->
+      <view class="card">
+        <view class="card-title">近7天销售额</view>
+        <view class="chart">
+          <view class="chart-bar-col" wx:for="{{chart}}" wx:key="label">
+            <view class="chart-amt">￥{{item.yuan}}</view>
+            <view class="chart-bar" style="height: {{item.height}}rpx;"></view>
+            <view class="chart-label">{{item.label}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 葡萄 vs 葡萄酒 -->
+      <view class="card">
+        <view class="card-title">分类占比</view>
+        <view class="ratio-row">
+          <view class="ratio-label">
+            <text class="tag tag-grape">葡萄</text>
+            <text class="ratio-amt">￥{{grapeText}} · {{grapePercent}}%</text>
+          </view>
+          <view class="ratio-bar">
+            <view class="ratio-fill grape" style="width: {{grapePercent}}%;"></view>
+          </view>
+        </view>
+        <view class="ratio-row">
+          <view class="ratio-label">
+            <text class="tag tag-wine">葡萄酒</text>
+            <text class="ratio-amt">￥{{wineText}} · {{winePercent}}%</text>
+          </view>
+          <view class="ratio-bar">
+            <view class="ratio-fill wine" style="width: {{winePercent}}%;"></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 商品销量排行 -->
+      <view class="card">
+        <view class="card-title">商品销量排行 TOP10</view>
+        <view wx:if="{{rankList.length}}">
+          <view class="rank-item" wx:for="{{rankList}}" wx:key="name">
+            <view class="rank-head">
+              <view class="rank-name">
+                <text class="rank-no">{{index + 1}}</text>
+                {{item.name}}
+                <text class="tag {{item.category === '葡萄酒' ? 'tag-wine' : 'tag-grape'}}">{{item.category}}</text>
+              </view>
+              <text class="rank-amt">￥{{item.amountText}}</text>
+            </view>
+            <view class="rank-meta">
+              销量 {{item.qtyText}}{{item.unit}} · 占比 {{item.percent}}%
+            </view>
+            <view class="rank-bar">
+              <view class="rank-fill" style="width: {{item.percent}}%;"></view>
+            </view>
+          </view>
+        </view>
+        <view wx:else class="empty">暂无商品销量数据</view>
+      </view>
+    </block>
+
+    <view wx:else class="empty">
+      <text class="empty-icon">📊</text>
+      该区间暂无销售数据
+    </view>
+  </view>
+
+  <!-- 老板端底部导航 -->
+  <boss-tab-bar selected="{{2}}"></boss-tab-bar>
+</view>

@@ -1,0 +1,110 @@
+<!-- pages/product/product.wxml -->
+<view class="page-product">
+  <!-- 分类 tab -->
+  <view class="cat-tabs">
+    <view class="cat-tab {{category === c ? 'active' : ''}}" wx:for="{{cats}}" wx:for-item="c" wx:key="*this" data-cat="{{c}}" bindtap="switchCat">{{c}}</view>
+    <view class="cat-add" bindtap="openAdd">＋ 新增</view>
+  </view>
+
+  <view class="container">
+    <view class="card list-card" wx:if="{{filteredList.length}}">
+      <view class="prod-row" wx:for="{{filteredList}}" wx:key="_id" data-id="{{item._id}}" bindtap="openEdit">
+        <!-- 缩略图 -->
+        <image class="prod-thumb" src="{{item.image}}" mode="aspectFill" wx:if="{{item.image}}"></image>
+        <view class="prod-thumb placeholder" wx:else>🍇</view>
+        <view class="prod-left">
+          <view class="prod-name">
+            {{item.name}}
+            <text class="tag {{item.category === '葡萄酒' ? 'tag-wine' : 'tag-grape'}}">{{item.category}}</text>
+            <text class="tag {{item.onSale === false ? 'tag-off' : 'tag-onsale'}}">{{item.onSale === false ? '已下架' : '已上架'}}</text>
+          </view>
+          <view class="prod-spec" wx:if="{{item.spec}}">{{item.spec}}</view>
+          <view class="prod-stock {{item.stockText === 0 ? 'stock-out' : ''}}">
+            库存：{{item.stockText === 0 ? '缺货' : item.stockText}}
+          </view>
+        </view>
+        <view class="prod-right">
+          <text class="prod-price">￥{{item.priceText}}</text>
+          <text class="prod-unit">/{{item.unit}}</text>
+          <view class="prod-ops">
+            <text class="prod-toggle" data-id="{{item._id}}" data-onsale="{{item.onSale}}" catchtap="onToggleSale">{{item.onSale === false ? '上架' : '下架'}}</text>
+            <text class="prod-del" data-id="{{item._id}}" catchtap="onDelete">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{!loading && !filteredList.length}}">
+      <text class="empty-icon">🍇</text>
+      暂无商品，点击右上角新增
+    </view>
+  </view>
+
+  <!-- 新增/编辑弹窗 -->
+  <view class="mask" wx:if="{{showForm}}" bindtap="closeForm"></view>
+  <view class="sheet {{showForm ? 'sheet-show' : ''}}" catchtap="">
+    <view class="sheet-head">
+      <text class="sheet-close" bindtap="closeForm">取消</text>
+      <text class="sheet-title">{{editingId ? '编辑商品' : '新增商品'}}</text>
+      <button class="btn btn-primary form-save" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存</button>
+    </view>
+    <view class="form-pad">
+      <view class="form-group">
+        <text class="form-label">名称</text>
+        <input class="form-input" placeholder="必填" value="{{form.name}}" bindinput="onNameInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">分类</text>
+        <view class="cat-switch">
+          <text class="cat-opt {{form.category === '葡萄' ? 'active' : ''}}" data-cat="葡萄" bindtap="pickCat">葡萄</text>
+          <text class="cat-opt {{form.category === '葡萄酒' ? 'active' : ''}}" data-cat="葡萄酒" bindtap="pickCat">葡萄酒</text>
+        </view>
+      </view>
+      <view class="form-group">
+        <text class="form-label">规格</text>
+        <input class="form-input" placeholder="如 500g/串、750ml" value="{{form.spec}}" bindinput="onSpecInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">单价</text>
+        <input class="form-input" type="digit" placeholder="元" value="{{form.price}}" bindinput="onPriceInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">单位</text>
+        <input class="form-input" placeholder="如 斤、瓶" value="{{form.unit}}" bindinput="onUnitInput" />
+      </view>
+      <!-- 商品图片 -->
+      <view class="form-group form-group-image">
+        <text class="form-label">商品图片</text>
+        <view class="image-area">
+          <view class="image-box" wx:if="{{form.image}}" bindtap="chooseImage">
+            <image class="image-preview" src="{{form.image}}" mode="aspectFill"></image>
+            <text class="image-repick">重新选择</text>
+          </view>
+          <view class="image-pick" wx:else bindtap="chooseImage">
+            <text class="pick-plus">＋</text>
+            <text class="pick-tip">{{uploading ? '上传中...' : '上传图片'}}</text>
+          </view>
+          <text class="image-clear" wx:if="{{form.image && !uploading}}" catchtap="clearImage">移除</text>
+        </view>
+      </view>
+      <!-- 库存 -->
+      <view class="form-group">
+        <text class="form-label">库存</text>
+        <input class="form-input" type="number" placeholder="0" value="{{form.stock}}" bindinput="onStockInput" />
+      </view>
+      <!-- 上架开关 -->
+      <view class="form-group">
+        <text class="form-label">上架销售</text>
+        <view class="switch-area">
+          <switch checked="{{form.onSale}}" bindchange="onSaleChange" color="#7BC47F" />
+          <text class="switch-hint">{{form.onSale ? '已上架（顾客可见）' : '已下架（顾客不可见）'}}</text>
+        </view>
+      </view>
+      <!-- 商品详情介绍 -->
+      <view class="form-group form-group-desc">
+        <text class="form-label">商品详情</text>
+        <textarea class="form-textarea" placeholder="多行介绍，如产地、口感、规格说明等" value="{{form.description}}" bindinput="onDescInput" maxlength="500" auto-height></textarea>
+      </view>
+    </view>
+  </view>
+</view>

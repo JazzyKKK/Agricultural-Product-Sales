@@ -1,0 +1,54 @@
+<!-- pages/shop/detail/detail.wxml 商品详情 -->
+<view class="page-detail" wx:if="{{product}}">
+  <!-- 大图 -->
+  <view class="detail-image-wrap">
+    <image wx:if="{{product.image}}" class="detail-image" src="{{product.image}}" mode="aspectFill" />
+    <view wx:else class="detail-image placeholder">{{product.category === '葡萄酒' ? '🍷' : '🍇'}}</view>
+  </view>
+
+  <view class="container">
+    <!-- 信息区 -->
+    <view class="card">
+      <view class="detail-name">{{product.name}}</view>
+      <view class="detail-tags">
+        <text class="tag {{product.category === '葡萄酒' ? 'tag-wine' : 'tag-grape'}}">{{product.category}}</text>
+        <text wx:if="{{product.spec}}" class="detail-spec">{{product.spec}}</text>
+      </view>
+      <view class="detail-price-row">
+        <text class="price detail-price">￥{{product.priceText}}</text>
+        <text class="detail-unit">/{{product.unit}}</text>
+      </view>
+      <view class="detail-stock">
+        <text wx:if="{{product.stock > 0}}">库存 {{product.stock}} 件</text>
+        <text wx:else class="text-danger">已售罄</text>
+      </view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class="card" wx:if="{{product.description}}">
+      <view class="card-title">商品详情</view>
+      <view class="detail-desc">{{product.description}}</view>
+    </view>
+
+    <!-- 数量选择 -->
+    <view class="card">
+      <view class="card-title">购买数量</view>
+      <view class="stepper">
+        <view class="step-btn {{qty <= 1 || product.stock <= 0 ? 'disabled' : ''}}" bindtap="onMinus">-</view>
+        <input class="step-input" type="number" value="{{qty}}" bindinput="onQtyInput" />
+        <view class="step-btn {{qty >= product.stock || product.stock <= 0 ? 'disabled' : ''}}" bindtap="onPlus">+</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="btn btn-outline bottom-btn" bindtap="onAddCart">加入购物车</view>
+    <view class="btn btn-primary bottom-btn {{product.stock <= 0 ? 'btn-disabled' : ''}}" bindtap="onBuyNow">立即购买</view>
+  </view>
+</view>
+
+<view wx:elif="{{!loading}}" class="empty">
+  <text class="empty-icon">🍇</text>
+  商品不存在
+</view>

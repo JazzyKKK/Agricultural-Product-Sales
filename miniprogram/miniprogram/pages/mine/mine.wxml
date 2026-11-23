@@ -1,0 +1,86 @@
+<!-- pages/mine/mine.wxml -->
+<view class="page-mine">
+  <!-- 用户卡 -->
+  <view class="user-card">
+    <view class="user-avatar">{{openid ? '🍇' : '👤'}}</view>
+    <view class="user-info">
+      <view class="user-title">阳光玫瑰销售记账</view>
+      <view class="user-sub">{{openid ? '便捷记账 · 数据云同步' : '未登录'}}</view>
+    </view>
+  </view>
+
+  <view class="container">
+    <!-- 功能入口 -->
+    <view class="card">
+      <view class="card-title">常用功能</view>
+      <view class="entry-item" bindtap="goProduct">
+        <text class="entry-icon icon-grape">🍇</text>
+        <text class="entry-name">商品目录</text>
+        <text class="entry-arrow">›</text>
+      </view>
+      <view class="entry-item" bindtap="goSaleList">
+        <text class="entry-icon icon-orange">📋</text>
+        <text class="entry-name">销售流水</text>
+        <text class="entry-arrow">›</text>
+      </view>
+      <view class="entry-item" bindtap="goShopOrder">
+        <text class="entry-icon icon-blue">📦</text>
+        <text class="entry-name">顾客订单</text>
+        <text class="entry-arrow">›</text>
+      </view>
+      <view class="entry-item" bindtap="goStats">
+        <text class="entry-icon icon-purple">📊</text>
+        <text class="entry-name">数据统计</text>
+        <text class="entry-arrow">›</text>
+      </view>
+      <view class="entry-item" bindtap="goCustomer">
+        <text class="entry-icon icon-blue">☺</text>
+        <text class="entry-name">客户管理</text>
+        <text class="entry-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 老板身份（openid） -->
+    <view class="card" wx:if="{{openid}}">
+      <view class="card-title">老板身份</view>
+      <view class="openid-row">
+        <text class="env-label">openid</text>
+        <text class="openid-value" selectable="{{true}}" user-select="{{true}}">{{openid}}</text>
+      </view>
+      <view class="openid-tip">将上方 openid 填入 app.js 的 bossOpenids 可获得老板权限</view>
+    </view>
+
+    <!-- 切换到顾客商城 -->
+    <view class="card">
+      <view class="entry-item" bindtap="goShop">
+        <text class="entry-icon icon-grape">🛍</text>
+        <text class="entry-name">切换到顾客商城</text>
+        <text class="entry-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 关于 -->
+    <view class="card">
+      <view class="card-title">关于</view>
+      <view class="about-text">
+        本小程序用于线下葡萄与葡萄酒销售记账，支持商品管理、客户管理与销售统计，数据通过微信云开发实时同步。
+      </view>
+      <view class="about-ver">版本 v1.0.0</view>
+    </view>
+
+    <!-- 云环境 -->
+    <view class="card">
+      <view class="card-title">云环境</view>
+      <view class="env-row" bindtap="showEnvTip">
+        <text class="env-label">当前环境</text>
+        <text class="env-value">{{envId || '未配置'}}</text>
+        <text class="entry-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="footer-tip">数据存储于微信云开发</view>
+  </view>
+
+  <!-- 老板端底部导航 -->
+  <boss-tab-bar selected="{{3}}"></boss-tab-bar>
+</view>

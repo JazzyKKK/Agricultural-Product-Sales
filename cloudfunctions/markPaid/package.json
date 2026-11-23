@@ -1,0 +1,9 @@
+{
+  "name": "markPaid",
+  "version": "1.0.0",
+  "description": "支付成功后标记订单为已支付（管理员权限）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

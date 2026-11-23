@@ -1,0 +1,109 @@
+<!-- pages/shopOrder/shopOrder.wxml -->
+<view class="page-shop-order">
+  <!-- 顶部状态筛选 -->
+  <view class="status-tabs">
+    <view class="status-tab {{status === item.key ? 'active' : ''}}"
+          wx:for="{{tabs}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="switchStatus">{{item.label}}</view>
+  </view>
+
+  <view class="container">
+    <block wx:if="{{list.length}}">
+      <view class="card order-card" wx:for="{{list}}" wx:key="_id">
+        <!-- 订单头：订单号 + 状态 -->
+        <view class="order-head">
+          <view class="order-no">单号：{{item.orderNo}}</view>
+          <text class="order-status {{item.statusCls}}">{{item.statusLabel}}</text>
+        </view>
+        <view class="order-time">{{item.timeText}}</view>
+
+        <!-- 顾客信息 -->
+        <view class="order-row">
+          <text class="row-label">顾客</text>
+          <text class="row-value">{{item.customerName || '未填写'}}</text>
+          <text class="row-call" wx:if="{{item.phone}}" data-phone="{{item.phone}}" catchtap="callCustomer">📞 {{item.phone}}</text>
+          <text class="row-call disabled" wx:else>未填电话</text>
+        </view>
+
+        <!-- 收货地址 -->
+        <view class="order-row" wx:if="{{item.address}}">
+          <text class="row-label">地址</text>
+          <text class="row-value row-addr">{{item.address}}</text>
+        </view>
+
+        <!-- 快递信息（已发货后展示） -->
+        <view class="order-row shipping-row" wx:if="{{item.trackingNumber}}">
+          <text class="row-label">快递</text>
+          <text class="row-value">{{item.shippingCompanyName}} · {{item.trackingNumber}}</text>
+        </view>
+
+        <!-- 商品明细 -->
+        <view class="order-items" wx:if="{{item.hasItems}}">
+          <view class="item-row" wx:for="{{item.itemRows}}" wx:for-item="it" wx:key="name">
+            <text class="item-name">{{it.name}}</text>
+            <text class="item-spec" wx:if="{{it.spec}}">（{{it.spec}}）</text>
+            <text class="item-qty">×{{it.qty}}</text>
+          </view>
+        </view>
+
+        <!-- 总金额 -->
+        <view class="order-foot">
+          <text class="order-total">合计 <text class="price">￥{{item.amountText}}</text></text>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="order-ops">
+          <block wx:if="{{item.status === 'paid'}}">
+            <button class="btn btn-primary op-btn" data-id="{{item._id}}" bindtap="onShip">发货</button>
+          </block>
+          <block wx:if="{{item.status === 'shipped'}}">
+            <button class="btn btn-primary op-btn" data-id="{{item._id}}" bindtap="onDone">确认完成</button>
+          </block>
+          <block wx:if="{{item.status === 'pending'}}">
+            <button class="btn btn-outline op-btn" bindtap="remindPay">提醒付款</button>
+            <button class="btn btn-danger op-btn" data-id="{{item._id}}" bindtap="onDelete">删除订单</button>
+          </block>
+        </view>
+      </view>
+
+      <!-- 加载更多 -->
+      <view class="load-more" wx:if="{{loadingMore}}">加载中...</view>
+      <view class="load-more" wx:if="{{!hasMore && list.length}}">没有更多了</view>
+    </block>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:if="{{!loading && !list.length}}">
+      <text class="empty-icon">📦</text>
+      暂无订单
+    </view>
+
+    <view class="empty" wx:if="{{loading}}">
+      加载中...
+    </view>
+  </view>
+
+  <!-- 发货弹窗：填写快递公司和单号 -->
+  <view class="ship-mask" wx:if="{{shipDialogVisible}}" bindtap="onCloseShipDialog">
+    <view class="ship-dialog" catchtap="noop">
+      <view class="ship-title">填写快递信息</view>
+      <view class="ship-tip">发货后将自动上报微信发货信息管理，无需再手动上传</view>
+
+      <view class="ship-field">
+        <text class="ship-label">快递公司</text>
+        <picker mode="selector" range="{{courierList}}" range-key="name" value="{{courierIndex}}" bindchange="onCourierChange">
+          <view class="ship-picker">{{courierList[courierIndex].name}} ▾</view>
+        </picker>
+      </view>
+
+      <view class="ship-field">
+        <text class="ship-label">快递单号</text>
+        <input class="ship-input" placeholder="请输入快递单号" value="{{trackingNumber}}" bindinput="onTrackingInput" confirm-type="done" />
+      </view>
+
+      <view class="ship-actions">
+        <view class="ship-btn ship-btn-cancel" catchtap="onCloseShipDialog">取消</view>
+        <view class="ship-btn ship-btn-confirm" catchtap="onConfirmShip">确认发货</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,145 @@
+/* pages/index/index.wxss */
+.page-index {
+  min-height: 100vh;
+  padding-bottom: 160rpx; /* 容纳 boss-tab-bar */
+}
+
+/* 顶部概览 */
+.hero {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  padding: 48rpx 40rpx 40rpx;
+  color: #fff;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.hero-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  opacity: 0.95;
+  margin-bottom: 32rpx;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;
+}
+
+.hero-cell {
+  flex: 1;
+}
+
+.hero-num {
+  font-size: 52rpx;
+  font-weight: 700;
+}
+
+.hero-label {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.hero-divider {
+  width: 2rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 20rpx;
+}
+
+.hero-month {
+  margin-top: 28rpx;
+  font-size: 24rpx;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.15);
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+}
+
+/* 快捷入口 */
+.quick-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quick-item {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.quick-item text {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-top: 12rpx;
+}
+
+.quick-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #fff;
+}
+
+.icon-sale { background: #7BC47F; }
+.icon-list { background: #F4A261; }
+.icon-customer { background: #5B9BD5; }
+.icon-product { background: #8E2D3C; }
+.icon-order { background: #E76F51; }
+.icon-stats { background: #9B7BCE; }
+
+/* 角标 */
+.quick-item {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 4rpx;
+  right: 24rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  padding: 0 8rpx;
+  border-radius: 16rpx;
+  background: #E64340;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+/* 销售列表项 */
+.sale-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.sale-item:last-child {
+  border-bottom: none;
+}
+
+.sale-name {
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.sale-meta {
+  font-size: 24rpx;
+  color: var(--text-light);
+  margin-top: 8rpx;
+}
+
+.sale-amount {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--danger);
+}

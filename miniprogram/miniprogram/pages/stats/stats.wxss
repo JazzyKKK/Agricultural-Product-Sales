@@ -1,0 +1,208 @@
+/* pages/stats/stats.wxss */
+.page-stats {
+  min-height: 100vh;
+  padding-bottom: 140rpx; /* 容纳 boss-tab-bar */
+}
+
+/* 时间筛选 */
+.range-tabs {
+  display: flex;
+  background: #fff;
+  padding: 16rpx 24rpx;
+  gap: 16rpx;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.range-tab {
+  flex: 1;
+  text-align: center;
+  padding: 14rpx 0;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  border-radius: 24rpx;
+  background: var(--bg);
+}
+
+.range-tab.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 概览卡 */
+.overview-card {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  color: #fff;
+}
+
+.overview-row {
+  display: flex;
+}
+
+.overview-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.overview-num {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.overview-label {
+  font-size: 22rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+/* 柱状图 */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  height: 320rpx;
+  padding: 20rpx 0 0;
+}
+
+.chart-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.chart-amt {
+  font-size: 20rpx;
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+}
+
+.chart-bar {
+  width: 48rpx;
+  background: linear-gradient(180deg, #7BC47F 0%, #5BA85F 100%);
+  border-radius: 8rpx 8rpx 0 0;
+  min-height: 8rpx;
+}
+
+.chart-label {
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin-top: 8rpx;
+}
+
+/* 分类占比 */
+.ratio-row {
+  padding: 16rpx 0;
+}
+
+.ratio-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.ratio-amt {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ratio-bar {
+  height: 16rpx;
+  background: var(--bg);
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.ratio-fill {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.3s;
+}
+
+.ratio-fill.grape {
+  background: var(--primary);
+}
+
+.ratio-fill.wine {
+  background: var(--wine);
+}
+
+/* 商品排行 */
+.rank-item {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.rank-item:last-child {
+  border-bottom: none;
+}
+
+.rank-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rank-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 16rpx;
+}
+
+.rank-no {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 50%;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.rank-name .tag {
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+.rank-amt {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--danger);
+  flex-shrink: 0;
+}
+
+.rank-meta {
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin: 8rpx 0;
+  padding-left: 52rpx;
+}
+
+.rank-bar {
+  height: 10rpx;
+  background: var(--primary-light);
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-left: 52rpx;
+}
+
+.rank-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 6rpx;
+}

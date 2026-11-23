@@ -1,0 +1,105 @@
+/* pages/shop/orders/orders.wxss 我的订单 */
+.page-orders {
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 状态 tab */
+.status-tabs {
+  display: flex;
+  background: #fff;
+  padding: 0 12rpx;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.status-tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.status-tab.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.status-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 4rpx;
+  background: var(--primary);
+  border-radius: 2rpx;
+}
+
+/* 订单卡片 */
+.order-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.order-no {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.order-status {
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.status-pending { color: var(--accent); background: #FFF3E0; }
+.status-paid { color: var(--primary-dark); background: var(--primary-light); }
+.status-shipped { color: #5B9BD5; background: #E8F0FB; }
+.status-done { color: var(--text-light); background: #F0F2F5; }
+.status-closed { color: var(--text-light); background: #F0F2F5; }
+
+.order-summary {
+  font-size: 28rpx;
+  color: var(--text);
+  margin-bottom: 16rpx;
+  line-height: 1.5;
+}
+
+.order-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16rpx;
+  border-top: 2rpx solid var(--border);
+}
+
+.order-time {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.order-total {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.order-action {
+  text-align: right;
+  margin-top: 16rpx;
+  font-size: 26rpx;
+}

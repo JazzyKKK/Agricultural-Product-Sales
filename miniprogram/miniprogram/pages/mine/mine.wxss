@@ -1,0 +1,141 @@
+/* pages/mine/mine.wxss */
+.page-mine {
+  min-height: 100vh;
+  padding-bottom: 140rpx; /* 容纳 boss-tab-bar */
+}
+
+/* 用户卡 */
+.user-card {
+  background: linear-gradient(135deg, #7BC47F 0%, #5BA85F 100%);
+  padding: 56rpx 40rpx 40rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.user-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  margin-right: 24rpx;
+}
+
+.user-title {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.user-sub {
+  font-size: 24rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+/* 功能入口 */
+.entry-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.entry-item:last-child {
+  border-bottom: none;
+}
+
+.entry-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-right: 20rpx;
+  color: #fff;
+}
+
+.icon-grape { background: #7BC47F; }
+.icon-orange { background: #F4A261; }
+.icon-purple { background: #9B7BCE; }
+.icon-blue { background: #5B9BD5; }
+
+.entry-name {
+  flex: 1;
+  font-size: 30rpx;
+}
+
+.entry-arrow {
+  font-size: 36rpx;
+  color: var(--text-light);
+}
+
+/* 关于 */
+.about-text {
+  font-size: 28rpx;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.about-ver {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+/* 云环境 */
+.env-row {
+  display: flex;
+  align-items: center;
+}
+
+.env-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-right: 24rpx;
+}
+
+.env-value {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--primary-dark);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* 老板身份 openid */
+.openid-row {
+  display: flex;
+  align-items: center;
+}
+
+.openid-value {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--primary-dark);
+  font-weight: 600;
+  word-break: break-all;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.openid-tip {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--accent);
+  line-height: 1.6;
+}
+
+/* 底部小字 */
+.footer-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-light);
+  margin-top: 32rpx;
+}

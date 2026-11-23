@@ -1,0 +1,37 @@
+<!-- pages/customer/customer.wxml -->
+<view class="page-customer">
+  <!-- 顶部搜索 + 新增 -->
+  <view class="top-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索姓名/手机号" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" />
+    </view>
+    <view class="add-btn" bindtap="goAdd">＋</view>
+  </view>
+
+  <view class="container">
+    <block wx:if="{{list.length}}">
+      <view class="card customer-card" wx:for="{{list}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+        <view class="cust-info">
+          <view class="cust-name">{{item.name}}</view>
+          <view class="cust-phone">{{item.phone || '未填写手机号'}}</view>
+          <view class="cust-stats">
+            <text>累计消费 <text class="price">￥{{item.amountText}}</text></text>
+            <text class="cust-divider">·</text>
+            <text>{{item.totalOrders}}单</text>
+          </view>
+        </view>
+        <view class="cust-call {{item.phone ? '' : 'disabled'}}" catchtap="callCustomer" data-phone="{{item.phone}}">
+          <text class="call-icon">📞</text>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="empty">
+      <text class="empty-icon">🍇</text>
+      {{loading ? '加载中...' : '暂无客户，点击右上角新增'}}
+    </view>
+  </view>
+
+  <!-- 老板端底部导航 -->
+  <boss-tab-bar selected="{{1}}"></boss-tab-bar>
+</view>

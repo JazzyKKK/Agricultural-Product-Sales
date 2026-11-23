@@ -1,0 +1,9 @@
+<!-- components/boss-tab-bar/boss-tab-bar.wxml -->
+<view class="boss-bar">
+  <view class="boss-item {{selected === index ? 'active' : ''}}"
+        wx:for="{{list}}" wx:key="pagePath"
+        data-index="{{index}}" bindtap="onTap">
+    <text class="boss-icon">{{item.icon}}</text>
+    <text class="boss-text">{{item.text}}</text>
+  </view>
+</view>

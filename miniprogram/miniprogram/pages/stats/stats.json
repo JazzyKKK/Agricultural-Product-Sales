@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "数据统计",
+  "usingComponents": {
+    "boss-tab-bar": "/components/boss-tab-bar/boss-tab-bar"
+  }
+}

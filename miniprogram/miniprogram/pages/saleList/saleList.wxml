@@ -1,0 +1,55 @@
+<!-- pages/saleList/saleList.wxml -->
+<view class="page-sale-list">
+  <!-- 顶部筛选 -->
+  <view class="filter-bar">
+    <view class="range-tabs">
+      <view class="range-tab {{rangeKey === item.key ? 'active' : ''}}" wx:for="{{rangeTabs}}" wx:key="key" data-key="{{item.key}}" bindtap="switchRange">{{item.label}}</view>
+    </view>
+    <view class="search-box">
+      <input class="search-input" placeholder="搜索客户名（本地过滤已加载列表）" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" />
+    </view>
+  </view>
+
+  <view class="container">
+    <!-- 顶部汇总 -->
+    <view class="summary-card">
+      <view class="summary-cell">
+        <view class="summary-num">￥{{loadedAmountText}}</view>
+        <view class="summary-label">已加载金额</view>
+      </view>
+      <view class="summary-divider"></view>
+      <view class="summary-cell">
+        <view class="summary-num">{{loadedOrders}}</view>
+        <view class="summary-label">已加载 N 单</view>
+      </view>
+    </view>
+
+    <!-- 列表 -->
+    <view class="card list-card" wx:if="{{filteredList.length}}">
+      <view class="sale-row" wx:for="{{filteredList}}" wx:key="_id" data-id="{{item._id}}" bindtap="goDetail">
+        <view class="sale-row-top">
+          <text class="sale-customer">{{item.customerNameText}}</text>
+          <text class="sale-amount">￥{{item.amountText}}</text>
+        </view>
+        <view class="sale-row-mid">
+          <text class="sale-orderno">{{item.orderNo}}</text>
+          <text class="tag {{item.payMethod === 'cash' ? 'tag-grape' : 'tag-wine'}}">{{item.payLabel}}</text>
+        </view>
+        <view class="sale-row-bot">
+          <text class="sale-time">{{item.timeText}}</text>
+          <text class="sale-qty">{{item.qtyText}} 件商品</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载提示 -->
+    <view class="load-tip" wx:if="{{loading}}">加载中...</view>
+    <view class="load-tip" wx:if="{{!hasMore && filteredList.length}}">没有更多了</view>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:if="{{!loading && !filteredList.length}}">
+      <text class="empty-icon">🍇</text>
+      {{keyword ? '没有匹配的销售记录' : '该范围内暂无销售记录'}}
+    </view>
+  </view>
+</view>

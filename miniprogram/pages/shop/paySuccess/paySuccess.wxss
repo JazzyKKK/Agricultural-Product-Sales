@@ -1,0 +1,109 @@
+/* pages/shop/paySuccess/paySuccess.wxss */
+.pay-success-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx 60rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #f8fbf8 0%, #ffffff 100%);
+}
+
+/* 成功图标 */
+.success-icon {
+  margin-bottom: 40rpx;
+}
+
+.icon-circle {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: #7BC47F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(123, 196, 127, 0.35);
+}
+
+.icon-check {
+  width: 50rpx;
+  height: 28rpx;
+  border-left: 8rpx solid #fff;
+  border-bottom: 8rpx solid #fff;
+  transform: rotate(-45deg) translate(2rpx, -6rpx);
+}
+
+/* 文案 */
+.success-title {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #1f2329;
+  margin-bottom: 20rpx;
+}
+
+.success-tip {
+  font-size: 32rpx;
+  color: #4e5969;
+  margin-bottom: 16rpx;
+}
+
+.success-sub-tip {
+  font-size: 26rpx;
+  color: #86909c;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 560rpx;
+  margin-bottom: 60rpx;
+}
+
+/* 按钮 */
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600rpx;
+  gap: 20rpx;
+  margin-bottom: 80rpx;
+}
+
+.btn {
+  width: 100%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: #7BC47F;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f2f3f5;
+  color: #4e5969;
+}
+
+/* 联系 */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
+}
+
+.contact-tip {
+  font-size: 24rpx;
+  color: #86909c;
+  margin-bottom: 12rpx;
+}
+
+.contact-phone {
+  font-size: 30rpx;
+  color: #7BC47F;
+  font-weight: 500;
+}

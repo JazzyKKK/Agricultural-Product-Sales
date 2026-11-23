@@ -1,0 +1,24 @@
+<!-- pages/shop/paySuccess/paySuccess.wxml -->
+<view class="pay-success-page">
+  <view class="success-icon">
+    <view class="icon-circle">
+      <view class="icon-check"></view>
+    </view>
+  </view>
+
+  <view class="success-title">支付成功</view>
+
+  <view class="success-tip">请留意物流信息</view>
+
+  <view class="success-sub-tip">老板会尽快为您安排发货，物流信息请通过微信留意。</view>
+
+  <view class="success-actions">
+    <view class="btn btn-primary" bindtap="goHome">回到首页</view>
+    <view class="btn btn-secondary" bindtap="goOrders">查看订单</view>
+  </view>
+
+  <view class="contact-section">
+    <view class="contact-tip">如有问题请联系商家</view>
+    <view class="contact-phone" bindtap="callBoss">📞 13659270717</view>
+  </view>
+</view>
